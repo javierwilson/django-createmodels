@@ -18,7 +18,7 @@ class Model(models.Model):
     inlines = models.ManyToManyField('self', symmetrical=False, blank=True)
 
     def __str__(self):
-        return self.name
+        return "%s (%s)" % (self.name, len(self.field_set.all()), )
 
     def _get_ordering(self):
         return Field.objects.filter(model=self, use_for_ordering=True)
@@ -65,7 +65,7 @@ class Field(models.Model):
     )
     model = models.ForeignKey('Model')
     name = models.CharField(max_length=30)
-    verbose_name = models.CharField(max_length=200)
+    verbose_name = models.CharField(max_length=200, null=True, blank=True)
     max_length = models.IntegerField(null=True, blank=True)
     type = models.CharField(choices=TYPE, max_length=30)
     is_fk = models.BooleanField()
