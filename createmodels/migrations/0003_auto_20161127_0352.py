@@ -8,13 +8,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('django_createmodels', '0002_auto_20161127_0350'),
+        ('createmodels', '0002_auto_20161127_0350'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='model',
             name='inlines',
-            field=models.ManyToManyField(blank=True, related_name='_model_inlines_+', to='django_createmodels.Model'),
+            field=models.ManyToManyField(blank=True, related_name='_model_inlines_+', to='createmodels.Model'),
         ),
     ]

@@ -1,0 +1,31 @@
+from django.contrib import admin
+from .models import *
+
+{% for model in models %}
+class {{ model.name }}Admin(admin.ModelAdmin):
+    {% if model.admin_list %}
+    list_display = [{% for admin_list in model.admin_list %}'{{ admin_list }}',{% endfor %}]
+    {% endif %}
+    {% if model.admin_readonly %}
+    #readonly_fields = ({% for admin_readonly in model.admin_readonly %}'{{ admin_readonly }}',{% endfor %})
+    {% endif %}
+    {% if model.admin_filter %}
+    list_filter = ({% for admin_filter in model.admin_filter %}'{{ admin_filter }}',{% endfor %})
+    {% endif %}
+    {% if model.admin_search %}
+    search_fields = [{% for admin_search in model.admin_search %}'{{ admin_search }}',{% endfor %}]
+    {% endif %}
+    {% if model.admin_inlines %}
+    inlines = [
+    {% for admin_inline in moedl.admin_inlines %}
+        {{ admin_inline }}Inline,
+    {% endfor %}
+    ]
+    {% endif %}
+    list_per_page = 100
+
+
+admin.site.register({{ model.name }}, {{ model.name }}Admin)
+
+
+{% endfor %}

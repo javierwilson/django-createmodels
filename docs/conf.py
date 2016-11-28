@@ -167,7 +167,7 @@ html_static_path = ['_static']
 # html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'django_createmodelsdoc'
+htmlhelp_basename = 'createmodelsdoc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -187,7 +187,7 @@ latex_elements = {
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
     ('index',
-     'django_createmodels.tex',
+     'createmodels.tex',
      'django-createmodels Documentation',
      """Javier Wilson""", 'manual'),
 ]
@@ -218,7 +218,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'django_createmodels', 'django-createmodels Documentation',
+    ('index', 'createmodels', 'django-createmodels Documentation',
      ["""Javier Wilson"""], 1)
 ]
 
@@ -232,7 +232,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    ('index', 'django_createmodels', 'django-createmodels Documentation',
+    ('index', 'createmodels', 'django-createmodels Documentation',
      """Javier Wilson""", 'django-createmodels',
      """Creates models.py and admin.py""", 'Miscellaneous'),
 ]

@@ -13,10 +13,19 @@ class Project(models.Model):
 @python_2_unicode_compatible
 class Model(models.Model):
     name = models.CharField(max_length=30)
+    verbose_name = models.CharField(max_length=200, null=True, blank=True)
     inlines = models.ManyToManyField('self', blank=True)
 
     def __str__(self):
         return self.name
+
+    def _get_ordering(self):
+        return Field.objects.filter(model=self, use_for_ordering=True)
+    ordering = property(_get_ordering)
+
+    def _get_selves(self):
+        return Field.objects.filter(model=self, use_for_self=True)
+    selves = property(_get_selves)
 
 #FIXME not sure how to do this
 #     inlines = models.ManyToManyField('self', through='Inlines')
@@ -39,7 +48,7 @@ class Field(models.Model):
     )
     model = models.ForeignKey('Model')
     name = models.CharField(max_length=30)
-    verbose = models.CharField(max_length=200)
+    verbose_name = models.CharField(max_length=200)
     max_length = models.IntegerField(null=True, blank=True)
     type = models.CharField(choices=TYPE, max_length=30)
     is_fk = models.BooleanField()

@@ -12,8 +12,8 @@ from __future__ import absolute_import, unicode_literals
 
 import environ
 
-ROOT_DIR = environ.Path(__file__) - 3  # (django_createmodels/config/settings/common.py - 3 = django_createmodels/)
-APPS_DIR = ROOT_DIR.path('django_createmodels')
+ROOT_DIR = environ.Path(__file__) - 3  # (createmodels/config/settings/common.py - 3 = createmodels/)
+APPS_DIR = ROOT_DIR.path('createmodels')
 
 env = environ.Env()
 env.read_env()
@@ -45,9 +45,9 @@ THIRD_PARTY_APPS = (
 # Apps specific for this project go here.
 LOCAL_APPS = (
     # custom users app
-    'django_createmodels.users.apps.UsersConfig',
+    'createmodels.users.apps.UsersConfig',
     # Your stuff: custom apps go here
-    'django_createmodels'
+    'createmodels'
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -68,7 +68,7 @@ MIDDLEWARE = (
 # MIGRATIONS CONFIGURATION
 # ------------------------------------------------------------------------------
 MIGRATION_MODULES = {
-    'sites': 'django_createmodels.contrib.sites.migrations'
+    'sites': 'createmodels.contrib.sites.migrations'
 }
 
 # DEBUG
@@ -101,7 +101,7 @@ MANAGERS = ADMINS
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres:///django_createmodels'),
+    'default': env.db('DATABASE_URL', default='postgres:///createmodels'),
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
@@ -235,8 +235,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 ACCOUNT_ALLOW_REGISTRATION = env.bool('DJANGO_ACCOUNT_ALLOW_REGISTRATION', True)
-ACCOUNT_ADAPTER = 'django_createmodels.users.adapters.AccountAdapter'
-SOCIALACCOUNT_ADAPTER = 'django_createmodels.users.adapters.SocialAccountAdapter'
+ACCOUNT_ADAPTER = 'createmodels.users.adapters.AccountAdapter'
+SOCIALACCOUNT_ADAPTER = 'createmodels.users.adapters.SocialAccountAdapter'
 
 # Custom user app defaults
 # Select the correct user model
@@ -253,3 +253,4 @@ ADMIN_URL = r'^admin/'
 
 # Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
+DEFAULT_CHARSET='utf-8'

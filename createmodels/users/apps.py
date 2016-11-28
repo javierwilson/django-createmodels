@@ -2,7 +2,7 @@ from django.apps import AppConfig
 
 
 class UsersConfig(AppConfig):
-    name = 'django_createmodels.users'
+    name = 'createmodels.users'
     verbose_name = "Users"
 
     def ready(self):

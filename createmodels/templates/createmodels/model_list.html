@@ -1,0 +1,26 @@
+# -*- coding: utf-8 -*-
+
+from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
+from django.utils.translation import ugettext as _
+
+
+{% for model in object_list %}
+@python_2_unicode_compatible
+class {{ model.name }}(models.Model):
+
+    {% for field in model.field_set.all %}{% spaceless %}
+    {{ field.name }} = models.{{ field.type }}({{ field.options }}verbose_name=_(u'{{ field.verbose_name }}')){% endspaceless %}
+    {% endfor %}
+
+    class Meta:
+        ordering = [{% for ordering in model.ordering %}'{{ ordering.name }}',{% endfor %}]
+        verbose_name = _(u'{{ model.verbose_name|default:model.name}}')
+        verbose_name_plural = _(u'{{ model.verbose_name|default:model.name }}')
+
+    {% if model.selves %}
+    def __str__(self):
+        return "{% for self in model.selves %}%s {% endfor %}" % ({% for self in model.selves %}self.{{self.name}}, {% endfor %})
+    {% endif %}
+
+{% endfor %}

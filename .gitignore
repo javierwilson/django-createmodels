@@ -59,8 +59,9 @@ node_modules/
 .env
 
 # User-uploaded media
-django_createmodels/media/
+createmodels/media/
 
 
 
 staticfiles/
+.cache

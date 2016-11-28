@@ -38,7 +38,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=30)),
-                ('inline', models.ManyToManyField(related_name='_model_inline_+', to='django_createmodels.Model')),
+                ('inline', models.ManyToManyField(related_name='_model_inline_+', to='createmodels.Model')),
             ],
         ),
         migrations.CreateModel(
@@ -51,6 +51,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='field',
             name='reference',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='django_createmodels.Model'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='createmodels.Model'),
         ),
     ]

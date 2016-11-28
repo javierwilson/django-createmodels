@@ -8,13 +8,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('django_createmodels', '0005_field_max_length'),
+        ('createmodels', '0004_auto_20161127_0402'),
     ]
 
     operations = [
-        migrations.AlterField(
+        migrations.AddField(
             model_name='field',
             name='max_length',
-            field=models.IntegerField(blank=True, null=True),
+            field=models.IntegerField(default=0),
+            preserve_default=False,
         ),
     ]
