@@ -9,7 +9,7 @@ from django.utils.translation import ugettext as _
 class {{ model.name }}(models.Model):
 
     {% for field in model.field_set.all %}{% spaceless %}
-    {{ field.name }} = models.{{ field.type }}({{ field.options|safe}}verbose_name=_(u'{{ field.verbose_name }}')){% endspaceless %}
+    {{ field.name }} = models.{{ field.type }}({{ field.options|safe}}verbose_name=_(u'{{ field.verbose_name|default:field.name }}')){% endspaceless %}
     {% endfor %}
 
     class Meta:
