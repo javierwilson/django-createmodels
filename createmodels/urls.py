@@ -11,6 +11,6 @@ from .views import ModelListView, AdminListView
 
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
-    url(r'^models.py.txt$', ModelListView.as_view(), name='models'),
-    url(r'^admin.py.txt$', AdminListView.as_view(), name='admin'),
+    url(r'^models.py$', ModelListView.as_view(), name='models'),
+    url(r'^admin.py$', AdminListView.as_view(), name='admin'),
 ]

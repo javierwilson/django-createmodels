@@ -4,13 +4,12 @@ from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext as _
 
-
 {% for model in object_list %}
-@python_2_unicode_compatible
+{% if model.selves %}@python_2_unicode_compatible{% endif %}
 class {{ model.name }}(models.Model):
 
     {% for field in model.field_set.all %}{% spaceless %}
-    {{ field.name }} = models.{{ field.type }}({{ field.options }}verbose_name=_(u'{{ field.verbose_name }}')){% endspaceless %}
+    {{ field.name }} = models.{{ field.type }}({{ field.options|safe}}verbose_name=_(u'{{ field.verbose_name }}')){% endspaceless %}
     {% endfor %}
 
     class Meta:
