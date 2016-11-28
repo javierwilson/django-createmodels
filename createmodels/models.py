@@ -87,7 +87,7 @@ class Field(models.Model):
     def _get_options(self):
         options = ''
         if self.type == 'ForeignKey':
-            options += "'%s', " % (self.reference,)
+            options += "'%s', " % (self.reference.name,)
 
         if self.type == 'CharField' and self.max_length:
             options += "max_length=%s, " % (self.max_length)

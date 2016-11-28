@@ -25,5 +25,5 @@ class AdminListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(AdminListView, self).get_context_data(**kwargs)
-        context['inlines'] = Model.inlines.through.objects.all()
+        context['inlines'] = Model.inlines.through.objects.all().distinct('to_model')
         return context

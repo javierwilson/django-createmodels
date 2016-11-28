@@ -2,8 +2,8 @@ from django.contrib import admin
 from .models import *
 
 {% for inline in inlines %}
-class {{ inline.to_model }}Inline(admin.TabularInline):
-    model = {{ inline.to_model }}
+class {{ inline.to_model.name }}Inline(admin.TabularInline):
+    model = {{ inline.to_model.name }}
 {% endfor %}
 
 {% for model in object_list %}
@@ -18,7 +18,7 @@ class {{ model.name }}Admin(admin.ModelAdmin):
     {% if model.inlines.all %}
     inlines = [
     {% for admin_inline in model.inlines.all %}
-        {{ admin_inline }}Inline,
+        {{ admin_inline.name }}Inline,
     {% endfor %}
     ]
     {% endif %}
