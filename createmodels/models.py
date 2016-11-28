@@ -68,8 +68,10 @@ class Field(models.Model):
     verbose_name = models.CharField(max_length=200, null=True, blank=True)
     max_length = models.IntegerField(null=True, blank=True)
     type = models.CharField(choices=TYPE, max_length=30)
+    #FIXME you already know this because of 'type' 
     is_fk = models.BooleanField()
     reference = models.ForeignKey('Model', null=True, blank=True, related_name='reference')
+    #FIXME always use id?
     is_pk = models.BooleanField()
     allow_null = models.BooleanField()
     allow_blank = models.BooleanField()
@@ -80,27 +82,35 @@ class Field(models.Model):
     admin_list = models.BooleanField()
     admin_readonly = models.BooleanField()
     default = models.CharField(max_length=30, null=True, blank=True)
+    choices = models.CharField(max_length=300, null=True, blank=True)
 
     def __str__(self):
         return "%s . %s" % (self.model, self.name)
 
     def _get_options(self):
-        options = ''
+        options = []
         if self.type == 'ForeignKey':
-            options += "'%s', " % (self.reference.name,)
+            options.append(self.reference.name)
 
         if self.type == 'CharField' and self.max_length:
-            options += "max_length=%s, " % (self.max_length)
+            options.append("max_length=%s" % (self.max_length))
 
         if self.type == 'DecimalField':
-            options += 'max_digits=10, decimal_places=2, '
+            options.append('max_digits=10')
+            options.append('decimal_places=2')
 
         if self.allow_null:
-            options += 'null=True, '
+            options.append('null=True')
 
         if self.allow_blank:
-            options += 'blank=True, '
+            options.append('blank=True')
 
-        return options
+        if self.verbose_name:
+            options.append('verbose_name=u"%s"' % (self.verbose_name))
+
+        if self.choices:
+            options.append('choices=(%s)' % (self.choices,))
+
+        return ', '.join(options)
 
     options = property(_get_options)
