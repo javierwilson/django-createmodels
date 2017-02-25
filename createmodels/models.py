@@ -59,8 +59,10 @@ class Field(models.Model):
         'DateField',
         'DecimalField',
         'ForeignKey',
+        'FloatField',
         'ImageField',
         'IntegerField',
+        'ManyToManyField',
         'TextField',
     )
     model = models.ForeignKey('Model')
